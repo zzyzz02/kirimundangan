@@ -2,9 +2,32 @@
 <html>
 <head>
   <title>Scan QR WhatsApp</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
-    body { font-family: sans-serif; text-align: center; padding-top: 30px; }
-    img { width: 300px; height: 300px; margin-top: 20px; }
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 30px 20px;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    img {
+      width: 80%;
+      max-width: 300px;
+      height: auto;
+      margin-top: 20px;
+    }
+
+    #status {
+      margin-top: 15px;
+      font-size: 1rem;
+    }
   </style>
 </head>
 <body>
@@ -20,7 +43,7 @@
         if (data.ready) {
           location.href = '/';
         } else {
-          setTimeout(checkStatus, 1000); // cek ulang tiap 2 detik
+          setTimeout(checkStatus, 2000); // cek ulang tiap 2 detik
         }
       } catch (e) {
         document.getElementById('status').innerText = '❌ Gagal terhubung ke server.';
