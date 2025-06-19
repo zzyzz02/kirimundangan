@@ -75,7 +75,10 @@ app.post('/send', (req, res) => {
     (async () => {
         for (let line of entries) {
             const parts = line.split(',');
-            const number = parts[0].replace(/\D/g, '');
+            let number = parts[0].trim().replace(/[^+\d]/g, ''); // hanya angka dan +
+            if (number.startsWith('+')) number = number.slice(1); // hilangkan +
+            if (number.startsWith('0')) number = '62' + number.slice(1); // 0xxxxx → 62xxxxx
+
             const chatId = `${number}@c.us`;
 
             try {
