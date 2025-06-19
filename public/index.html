@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kirim WhatsApp</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px 0;
+    }
+    
+    .main-container {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    
+    .header-section {
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      color: white;
+      padding: 30px 0;
+      text-align: center;
+    }
+    
+    .header-section h2 {
+      margin: 0;
+      font-weight: 600;
+      font-size: 2rem;
+    }
+    
+    .content-section {
+      padding: 30px;
+    }
+    
+    .table-container {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 25px;
+      border: 1px solid #e9ecef;
+    }
+    
+    .table thead th {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      font-weight: 500;
+      text-align: center;
+      vertical-align: middle;
+    }
+    
+    .table tbody td {
+      vertical-align: middle;
+      text-align: center;
+      border-color: #e9ecef;
+    }
+    
+    .btn-custom {
+      border-radius: 25px;
+      padding: 8px 20px;
+      font-weight: 500;
+      text-transform: none;
+      transition: all 0.3s ease;
+      border: none;
+    }
+    
+    .btn-primary-custom {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    
+    .btn-primary-custom:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+      color: white;
+    }
+    
+    .btn-success-custom {
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      color: white;
+    }
+    
+    .btn-success-custom:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+      color: white;
+    }
+    
+    .btn-danger-custom {
+      background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+      color: white;
+    }
+    
+    .btn-danger-custom:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+      color: white;
+    }
+    
+    .btn-icon {
+      background: none;
+      border: none;
+      color: #dc3545;
+      font-size: 1.2rem;
+      padding: 5px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-icon:hover {
+      background: #dc3545;
+      color: white;
+      transform: scale(1.1);
+    }
+    
+    .form-control, .form-select {
+      border-radius: 10px;
+      border: 1px solid #e9ecef;
+      padding: 10px 15px;
+      transition: all 0.3s ease;
+    }
+    
+    .form-control:focus, .form-select:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+    
+    .textarea-custom {
+      min-height: 120px;
+      border-radius: 10px;
+      resize: vertical;
+    }
+    
+    .file-upload-section {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 20px;
+      border: 2px dashed #dee2e6;
+      text-align: center;
+      margin-top: 30px;
+      transition: all 0.3s ease;
+    }
+    
+    .file-upload-section:hover {
+      border-color: #667eea;
+      background: #f5f7ff;
+    }
+    
+    .section-title {
+      color: #495057;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+    
+    .submit-section {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 25px;
+      text-align: center;
+      margin-top: 30px;
+    }
+    
+    @media (max-width: 768px) {
+      .content-section {
+        padding: 20px 15px;
+      }
+      
+      .header-section h2 {
+        font-size: 1.5rem;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+      }
+      
+      .btn-custom {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      
+      .table-responsive {
+        font-size: 0.875rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="main-container">
+      <!-- Header Section -->
+      <div class="header-section">
+        <h2><i class="bi bi-whatsapp"></i> Kirim Undangan </h2>
+        <!-- <p class="mb-0">Kelola dan kirim pesan WhatsApp secara massal dengan mudah</p> -->
+      </div>
+
+      <!-- Content Section -->
+      <div class="content-section">
+        <form method="POST" action="/send" onsubmit="return prepareData()">
+          
+          <!-- Data Table Section -->
+          <div class="section-title">
+            <i class="bi bi-table text-primary"></i>
+            <span>Data Kontak </span>
+          </div>
+          
+          <div class="table-container">
+            <div class="table-responsive">
+              <table class="table table-hover" id="data-table">
+                <thead>
+                  <tr id="header-row">
+                    <th style="min-width: 150px;">
+                      <i class="bi bi-telephone me-2"></i>Nomor WhatsApp
+                    </th>
+                    <th style="min-width: 120px;">
+                      <input type="text" class="form-control form-control-sm" value="Nama" onchange="updateParamName(0, this.value)" />
+                    </th>
+                    <th style="width: 80px;">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="data-body">
+                  <tr>
+                    <td>
+                      <input name="number" class="form-control form-control-sm" placeholder="6281234567890" />
+                    </td>
+                    <td>
+                      <input name="param0" class="form-control form-control-sm" placeholder="Fajar" />
+                    </td>
+                    <td>
+                      <button type="button" onclick="deleteRow(this)" class="btn-icon" title="Hapus Baris">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="action-buttons">
+            <button type="button" class="btn btn-custom btn-primary-custom" onclick="addRow()">
+              <i class="bi bi-plus-circle me-2"></i>Tambah Nomor
+            </button>
+            <!-- <button type="button" class="btn btn-custom btn-success-custom" onclick="addParam()">
+              <i class="bi bi-plus-square me-2"></i>Tambah Parameter
+            </button>
+            <button type="button" class="btn btn-custom btn-danger-custom" onclick="removeParam()">
+              <i class="bi bi-dash-square me-2"></i>Hapus Parameter Terakhir
+            </button> -->
+          </div>
+
+          <!-- Message Template Section -->
+          <div class="section-title">
+            <i class="bi bi-chat-text text-success"></i>
+            <span>Template Pesan</span>
+          </div>
+          
+          <div class="mb-3">
+            <!-- <label for="message" class="form-label">
+              <i class="bi bi-pencil-square me-2"></i>
+              Template Pesan (gunakan {1}, {2}, {3}, ... untuk parameter)
+            </label> -->
+            <textarea name="message" rows="12" cols="60">
+Kepada Yth.
+Bapak/Ibu/Saudara/i
+*{1}*
+
+*Assalamu'alaikum Wr. Wb*.
+Bismillahirahmanirrahim.
+
+Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, teman sekaligus sahabat, untuk menghadiri acara pernikahan kami.
+
+Berikut link untuk info lengkap dari acara kami :
+https://undangan-fajar-fadilah.online?tamu={2}
+Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.
+
+Wassalamu'alaikum Wr. Wb.
+
+Terima Kasih..
+
+Hormat kami,
+*Fajar & Fadilah*
+            </textarea>            <!-- <div class="form-text">
+              <i class="bi bi-info-circle me-1"></i>
+              Gunakan {1} untuk parameter pertama, {2} untuk parameter kedua, dan seterusnya.
+            </div> -->
+          </div>
+
+          <!-- Submit Section -->
+          <div class="submit-section">
+            <input type="hidden" name="entries" id="entries">
+            <button type="submit" class="btn btn-custom btn-success-custom btn-lg me-3">
+              <i class="bi bi-send me-2"></i>Kirim Pesan
+            </button>
+            <a href="/logout" class="btn btn-custom btn-danger-custom btn-lg">
+              <i class="bi bi-box-arrow-right me-2"></i>Logout WhatsApp
+            </a>
+          </div>
+        </form>
+
+        <!-- File Upload Section -->
+        <div class="file-upload-section">
+          <div class="section-title justify-content-center">
+            <i class="bi bi-file-earmark-spreadsheet text-info"></i>
+            <span>Import Data dari File</span>
+          </div>
+          <p class="text-muted mb-3">Upload file Excel (.xlsx, .xls) atau CSV untuk import data secara massal</p>
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+              <input type="file" id="fileUpload" class="form-control" accept=".xlsx,.xls,.csv" />
+            </div>
+          </div>
+          <div class="mt-3">
+            <small class="text-muted">
+              <i class="bi bi-lightbulb me-1"></i>
+              Format file: Kolom pertama untuk nomor WhatsApp, kolom berikutnya untuk parameter pesan
+            </small>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <!-- SheetJS (XLSX parser) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+  <script>
+    let paramCount = 1;
+    let paramNames = ['nama'];
+
+    function addRow() {
+      const row = document.createElement('tr');
+      let html = `<td><input name="number" class="form-control form-control-sm" placeholder="628..." /></td>`;
+      for (let i = 0; i < paramCount; i++) {
+        html += `<td><input name="param${i}" class="form-control form-control-sm" /></td>`;
+      }
+      html += `<td><button type="button" class="btn-icon" onclick="deleteRow(this)" title="Hapus Baris"><i class="bi bi-trash"></i></button></td>`;
+      row.innerHTML = html;
+      document.getElementById("data-body").appendChild(row);
+    }
+
+    function deleteRow(button) {
+      const row = button.closest('tr');
+      row.remove();
+    }
+
+    function addParam() {
+      const index = paramCount;
+      paramNames.push(`param${index}`);
+      paramCount++;
+
+      const headerRow = document.getElementById("header-row");
+      const th = document.createElement("th");
+      th.style.minWidth = "120px";
+      th.innerHTML = `<input type="text" class="form-control form-control-sm" value="param${index}" onchange="updateParamName(${index}, this.value)" />`;
+      headerRow.insertBefore(th, headerRow.lastElementChild);
+
+      document.querySelectorAll("#data-body tr").forEach(row => {
+        const td = document.createElement("td");
+        td.innerHTML = `<input name="param${index}" class="form-control form-control-sm" />`;
+        row.insertBefore(td, row.lastElementChild);
+      });
+    }
+
+    function removeParam() {
+      if (paramCount === 0) return;
+
+      paramCount--;
+      paramNames.pop();
+
+      const headerRow = document.getElementById("header-row");
+      headerRow.removeChild(headerRow.children[headerRow.children.length - 2]);
+
+      document.querySelectorAll("#data-body tr").forEach(row => {
+        row.removeChild(row.children[row.children.length - 2]);
+      });
+    }
+
+    function updateParamName(index, value) {
+      paramNames[index] = value;
+    }
+
+    function prepareData() {
+      const rows = document.querySelectorAll("#data-body tr");
+      const data = [];
+
+      rows.forEach(row => {
+        const inputs = row.querySelectorAll("input");
+        const number = inputs[0].value.trim().replace(/\D/g, '');
+        if (!number) return;
+
+        const params = Array.from(inputs).slice(1).map(i => i.value.trim());
+        const isComplete = params.every(p => p.length > 0);
+        if (!isComplete) return;
+
+        data.push([number, ...params].join(','));
+      });
+
+      if (data.length === 0) {
+        alert("Tidak ada data yang valid untuk dikirim.");
+        return false;
+      }
+
+      document.getElementById("entries").value = data.join('\n');
+      return true;
+    }
+
+    // Handle Upload Excel
+    document.getElementById('fileUpload').addEventListener('change', function (e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+
+      reader.onload = function (event) {
+        try {
+          const data = new Uint8Array(event.target.result);
+          const workbook = XLSX.read(data, { type: 'array' });
+          const sheet = workbook.Sheets[workbook.SheetNames[0]];
+          const json = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+          if (json.length < 2) {
+            alert("File harus memiliki minimal 2 baris (header + data).");
+            return;
+          }
+
+          // Clear existing data
+          document.getElementById("data-body").innerHTML = "";
+          const headerRow = document.getElementById("header-row");
+          headerRow.innerHTML = `<th style="min-width: 150px;"><i class="bi bi-telephone me-2"></i>Nomor WhatsApp</th>`;
+
+          // Set up parameters from file headers
+          const headers = json[0].slice(1);
+          paramNames = headers.map((h, i) => h || `param${i}`);
+          paramCount = headers.length;
+
+          paramNames.forEach((name, i) => {
+            const th = document.createElement("th");
+            th.style.minWidth = "120px";
+            th.innerHTML = `<input type="text" class="form-control form-control-sm" value="${name}" onchange="updateParamName(${i}, this.value)" />`;
+            headerRow.appendChild(th);
+          });
+
+          const actionTh = document.createElement("th");
+          actionTh.style.width = "80px";
+          actionTh.textContent = "Aksi";
+          headerRow.appendChild(actionTh);
+
+          // Add data rows
+          json.slice(1).forEach(row => {
+            const number = row[0] || "";
+            const tr = document.createElement("tr");
+            let html = `<td><input name="number" class="form-control form-control-sm" value="${number}" /></td>`;
+            for (let i = 1; i <= paramCount; i++) {
+              html += `<td><input name="param${i - 1}" class="form-control form-control-sm" value="${row[i] || ""}" /></td>`;
+            }
+            html += `<td><button type="button" class="btn-icon" onclick="deleteRow(this)" title="Hapus Baris"><i class="bi bi-trash"></i></button></td>`;
+            tr.innerHTML = html;
+            document.getElementById("data-body").appendChild(tr);
+          });
+
+          // Show success message
+          const toast = document.createElement('div');
+          toast.className = 'alert alert-success alert-dismissible fade show position-fixed';
+          toast.style.top = '20px';
+          toast.style.right = '20px';
+          toast.style.zIndex = '1050';
+          toast.innerHTML = `
+            <i class="bi bi-check-circle me-2"></i>
+            File berhasil diimport! ${json.length - 1} baris data ditambahkan.
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          `;
+          document.body.appendChild(toast);
+
+          // Auto remove toast after 5 seconds
+          setTimeout(() => {
+            if (toast.parentNode) {
+              toast.parentNode.removeChild(toast);
+            }
+          }, 5000);
+
+        } catch (error) {
+          alert("Error membaca file: " + error.message);
+        }
+      };
+
+      reader.readAsArrayBuffer(file);
+    });
+  </script>
+</body>
+</html>
